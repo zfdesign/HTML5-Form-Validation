@@ -1,0 +1,6 @@
+HTML5 Form Validation - jQuery plugin 
+
+This jQuery plugin is intended to provide Custom Client side Form Validation taking advantage of HTML5 Forms module 
+paterns and extending it with additional HTML5 "data" INPUT attributes providing flexible Form fiels Validation. 
+
+Note: This plugin is an early development stage and not ready for production environment use. 
