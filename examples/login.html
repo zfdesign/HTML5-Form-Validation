@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='utf-8' />
+	<title>Login example - ZFDesign Validate Forme jQuery plugin</title>
+	<link rel="stylesheet" href="../stylesheets/examples.css"></link>
+  </head>
+  <body>
+
+		<form name="myForm" action="submissionSuccess.html" method="post">
+			<h1 class="sslEnabled">Login</h1>
+			<p>Please enter your email address and password</p>
+			<fieldset>
+				<p>
+					<label for="EmailAddress">Email address</label>
+					<span class="validationWrap">
+						<input type="email" name="EmailAddress" id="EmailAddress" value="" placeholder="example@domain.com" 
+						required="" data-required-message="Please enter an email address" 
+						pattern="(.*)[@]{1}(.*)" data-pattern-message="Please enter a valid email address" 
+						aria-required="true" tabindex="1" title="Email address" />
+					</span>
+				</p>
+				<p>
+					<label for="Password">Password</label>
+					<span class="validationWrap">
+						<input type="password" id="Password" name="Password" 
+						data-minlength="4" data-minlength-message="Please enter 4 or more characters." 
+						required="" data-required-message="Please enter a password" 
+						tabindex="2" title="Password" />
+					</span>
+				</p>
+				<p class="submitForm">
+					<input type="submit" value="Login" tabindex="3" />
+				</p>
+			</fieldset>
+		</form>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+		<script src="../javascripts/ZFDValidateForm.js"></script>
+		<script>
+			$('form').ZFValidateForm();
+		</script>
+  </body>
+</html>
