@@ -7,21 +7,16 @@ Grab, modify, apply, enjoy...
 A JavaScript, jQuery plugin for client side HTML5 form validation.
 
 This HTML5 Form validation plugin is _free_ and hopefully it will be found easy 
-to use and implement on your Web site under Apache [License](#License). 
+to use and implement on your Web site under MIT [License](#license). 
 Please quote the plugin author wherever possible and refer to the documentation. 
 
 This plugin adheres to HTML5 Forms specification to _gracefully degrade_ to browser 
 buitin validation. It supresses the compliant browsers default validation messages, 
 allowing the user to specify container for individual error messages or to
 group error messages in a single container at a suitable place on the page.
-
 It employs "data-" attributes to provide functionality and bind warning messages. 
-
 It will also work with older browsers and non HTML5 Form documents, remember to test.
 Do not assume it will just work. 
-
-This plug-in requires jQuery 1.7 and above. It will also work with earlier versions, 
-but make sure to test turoughly in all browsers you have to support. 
 
 The Web developer is in control over validation executions, with function call-backs 
 for Validation events. It has a debug mode and a way that allows to access features 
@@ -53,7 +48,7 @@ Enough talking lets get you started...
 * Multiple groups of error containers
 * Card details form
 
-*TODO:*
+*TODO: features*
 * compare two fields
 
 # Implementation 
@@ -95,7 +90,8 @@ and the author would not take any responsibility for implementations.
 Client side Form validation is to aid the user with filLing in a Form, warn them before 
 an aditional HTTP request is made where the business logic validation rules should apply.
 
-### Copyrights 
+## License
 
-*// TODO:* Apache licence here...
+MIT License  
+Copyright (c) ZFDesign  
 
