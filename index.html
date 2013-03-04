@@ -31,13 +31,158 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>HTML5 Form Validation - jQuery plugin</h3>
+        <h1>HTML5 form validation jQuery plugin</h1>
 
-<p>This jQuery plugin is intended to provide Custom client side form validation taking advantage of 
-<a href="http://www.w3.org/TR/2011/WD-html5-20110525/forms.html#client-side-form-validation">W3C specification Client-side form validation</a> 
-and extending it with additional HTML5 "data-" attributes for form fields. </p>
+<p>Grab, modify, apply, enjoy...</p>
 
-<p>Note: This plugin is development and will be available soon. </p>
+<h2>Description</h2>
+
+<p>A JavaScript, jQuery plugin for client side HTML5 form validation. Link to the 
+<a href="http://zfdesign.github.com/HTML5-Form-Validation/">Web site</a> dedicated to this pugin. </p>
+
+<p>This HTML5 Form validation plugin is <em>free</em> and hopefully it will be found easy 
+to use and implement on your Web site under MIT <a href="#license">License</a>. 
+Please quote the plugin author wherever possible and refer to the documentation. </p>
+
+<p>This plugin adheres to HTML5 Forms specification to <em>gracefully degrade</em> to browser 
+buitin validation. It supresses the compliant browsers default validation messages, 
+allowing the user to specify container for individual error messages or to
+group error messages in a single container at a suitable place on the page.
+It employs "data-" attributes to provide functionality and bind warning messages. 
+It will also work with older browsers and non HTML5 Form documents, remember to test.
+Do not assume it will just work. </p>
+
+<p>The Web developer is in control over validation executions, with function call-backs 
+for Validation events. It has a debug mode and a way that allows to access features 
+and enble debugging in production code. </p>
+
+<h2>List of supported validation checks</h2>
+
+<ul>
+<li>Required attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-input-element-attributes.html#the-required-attribute">(standard)</a>
+</li>
+<li>Minimum length through custom "data-minlength" attribute (can be set by the developer)</li>
+<li>Maxlength attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-input-element-attributes.html#the-maxlength-attribute">(standard)</a>
+</li>
+<li>Pattern attribute <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-input-element-attributes.html#the-pattern-attribute">(standard)</a>
+</li>
+<li>Custom validation rules</li>
+<li>Date: Day, Month and Year</li>
+</ul><p>Ref. <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#client-side-form-validation">www.whatwg.org Client side form validation</a> </p>
+
+<p>Those are provided out of the box, but feel free to tweak and modify for your needs. 
+Fork on GitHub and/or submit your suggestions for improvements. The author has 
+already a few tweaks in his mind. Finding the time for it all is difficult. </p>
+
+<p>Enough talking lets get started...</p>
+
+<h1>Use cases</h1>
+
+<p>Here are a few examples from the <a href="http://zfdesign.github.com/HTML5-Form-Validation/">Web site</a> dedicated to this pugin. </p>
+
+<ul>
+<li><a href="http://zfdesign.github.com/HTML5-Form-Validation/examples/login.html">Login form</a></li>
+<li><a href="http://zfdesign.github.com/HTML5-Form-Validation/examples/register.html">Registration form</a></li>
+<li>Custom error appearance 
+** <a href="http://zfdesign.github.com/HTML5-Form-Validation/examples/register.html#SingleErrorContainer">Single error container for all form fields</a>
+** Multiple groups of error containers - <a href="http://zfdesign.github.com/HTML5-Form-Validation/examples/card-details.html">Card details example</a>
+</li>
+</ul><h1>Implementation</h1>
+
+<h2>Simple</h2>
+
+<p>It could is a simple as: </p>
+
+<ul>
+<li>Include jQuery and ZFValidateForm.js</li>
+<li>Set Input attributes (requires use of custom "data-" attributes)</li>
+<li>
+<p>Add a JavaScript line: </p>
+
+<p>$('formSelector').ZFValidateForm(); </p>
+</li>
+</ul><h2>With 'options'</h2>
+
+<p>It is similar as above, but when needed the user can customise some of the defaults. 
+A simple example is the <a href="http://zfdesign.github.com/HTML5-Form-Validation/examples/card-details.html">Card details example</a>. </p>
+
+<h3>Options reference:</h3>
+
+<ul>
+<li>defaultErrorMessage:      '* Incorrect input',        // Default Error message if one not found</li>
+<li>errorClassName:           'error',                    // Error class attribute value - NOT jQuery selector </li>
+<li>errorWrapToggleClass:     'showError',                // Error class attribute value - NOT jQuery selector </li>
+<li>singleErrorContainer:     '.formValidationError',     // All Error messages in a Single container - jQuery Selector</li>
+<li>useSingleErrorContainer:  false,                      // Enable all Error messages in a single container</li>
+<li>useCustomErrorContainer:  false,                      // Enable all Error messages in the custom container specified in 'data-error-container'</li>
+<li>errorInsertBeforeField:   false,                      // Place Error message before validated field (does NOT apply when "errorClassName" element is Input sibling, NOR when useSingleErrorContainer = true)</li>
+<li>hideErrorOnClearedInput:  true,                       // Hide Error messages when Input is cleared by the user</li>
+<li>disableBrowserValidation: true,                       // Disable HTML5 Browser validation (should be set to 'true') </li>
+</ul><p>// events</p>
+
+<ul>
+<li>validateOnKeyup:          false,                      // Validate Field onKeyup event</li>
+<li>validateOnBlur:           false,                      // Validate Field onBlur event</li>
+<li>validateOnChange:         true,                       // Validate Field onChange event</li>
+<li>validateOnLoad:           false,                      // Validate Form on Document load and return "isFormValid"</li>
+<li>validateInputType:        false,                      // Validate Field Type (NOT IN USE reserved for future)</li>
+<li>validateCustomRules:      true,                       // Validates fields with attribute data-custom-validity='{"type": "expiryDate", "arguments": {"key": "value"}}'</li>
+<li>onDemandValidate:         false,                      // TRUE: will give access to: $.fn.ZFValidateForm.onDemandValidate() Method - validates the Form with callback options, returns "isFormValid"</li>
+</ul><p>// callbacks</p>
+
+<ul>
+<li>onFieldValid:             function(){},               // onChange and onKeyup Field Valid Callback (runs onChange and onKeyup to avoid performance issues)</li>
+<li>onFieldNotValid:          function(){},               // onChange and onKeyup Field NOT Valid Callback (runs onChange and onKeyup to avoid performance issues)</li>
+<li>onFormValid:              function(){},               // on Submit and Form Valid Callback</li>
+<li>onFormInvalid:            function(){},               // on Submit and Form NOT Valid Callback</li>
+</ul><p>// field attributes</p>
+
+<ul>
+<li>minLength:                1,                              // default minimum length to validate against if no minLengthAttribute value is provided</li>
+<li>maxLength:                256,                        // default maximum length to validate against if no "maxlength" Attribute value is provided</li>
+<li>minLengthAttribute:       'data-minlength',           // Attribute name for minimum required length </li>
+<li>minLengthMessage:         'data-minlength-message',   // Error message on minimum length validation fail</li>
+<li>maxLengthMessage:         'data-maxlength-message',   // Error message on "maxlength" validation fail</li>
+<li>requiredMessage:          'data-required-message',    // Error message on "required" validation fail</li>
+<li>patternMessage:           'data-pattern-message',     // Error message on "pattern" validation fail</li>
+<li>matchAttribute:           'data-match-field',         // Attribute name for field matching values - jQuery Selector</li>
+<li>matchMessage:             'data-match-message',       // Error message on "field match" validation fail</li>
+</ul><p>// Debug mode
+debugMode: false                                        // Displays messages in the Console</p>
+
+<p>Remeber Client side validation does enfoce business logic, it is there to suggest, 
+help and guide the user through sometimes mundaine form submission. </p>
+
+<h2>Browser support</h2>
+
+<p>At the time of writing the plugin is found to be working well and stable in the most popular 
+desktop browsers (Chrome, Firefox, Safari, Opera) in Windows, Mac OS, iOS and Android, it is 
+the imperative that you test for the platfoms you intend to support.</p>
+
+<p>The browser landscape changes everyday with updates pushed and new ones being available. 
+Many variations depending on hardware vary especially on Mobile devices are present. Although 
+intention is for updates and bug fixes to be made regularly and as per requests, the author 
+cannot take responsibility for implementations. </p>
+
+<h2>Dependencies</h2>
+
+<p>Assumes basic JavaScript understanding. 
+jQuery 1.7 and above is recommended (works with some earlier versions)</p>
+
+<p>Requires that user to be able to specify custom "data-" attributes in the markup. </p>
+
+<h2>Disclaimer</h2>
+
+<p>Since this is free to use software developed in my spare time it comes with no worranties 
+and the author would not take any responsibility for implementations. </p>
+
+<p>Client side Form validation is to aid the user with filLing in a Form, warn them before 
+an aditional HTTP request is made where the business logic validation rules should apply.</p>
+
+<h2>License</h2>
+
+<p>MIT License<br>
+Copyright (c) ZFDesign  </p>
       </section>
     </div>
 
