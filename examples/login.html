@@ -1,39 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-  <meta charset='utf-8' />
-	<title>Login example - ZFDesign Validate Forme jQuery plugin</title>
-	<link rel="stylesheet" href="../stylesheets/examples.css"></link>
+	  <meta charset='utf-8' />
+		<title>Login page - ZFDesign Form Validation jQuery plugin example</title>
+	  <meta name="description" content="Login page - ZFDesign Form Validation jQuery plugin example" />
+	  <meta name="author" content="zfdesign" />
+		<link rel="stylesheet" href="../stylesheets/examples.css"></link>
   </head>
   <body>
 
+  	<div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/zfdesign/HTML5-Form-Validation">View on GitHub</a>
+
+          <h1 id="project_title">HTML5 Form Validation</h1>
+          <h2 id="project_tagline">jQuery plugin by ZFDesign</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/zfdesign/HTML5-Form-Validation/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/zfdesign/HTML5-Form-Validation/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+  	
+	<div id="main_content_wrap" class="inner">
+
 		<form name="myForm" action="submissionSuccess.html" method="post">
-			<h1 class="sslEnabled">Login</h1>
+			<h1>Login</h1>
 			<p>Please enter your email address and password</p>
+			<p><em>* This is for demonstration purposes only. There is no real form submission</em></p>
+
 			<fieldset>
 				<p>
-					<label for="EmailAddress">Email address</label>
+					<label for="EmailAddress">Email address </label>
 					<span class="validationWrap">
 						<input type="email" name="EmailAddress" id="EmailAddress" value="" placeholder="example@domain.com" 
-						required="" data-required-message="Please enter an email address" 
-						pattern="(.*)[@]{1}(.*)" data-pattern-message="Please enter a valid email address" 
+						required="" data-required-message="Please enter email address" 
+						pattern="(.*)[@]{1}(.*)" data-pattern-message="Please enter valid email address" 
 						aria-required="true" tabindex="1" title="Email address" />
 					</span>
 				</p>
 				<p>
-					<label for="Password">Password</label>
+					<label for="Password">Password </label>
 					<span class="validationWrap">
-						<input type="password" id="Password" name="Password" 
-						data-minlength="4" data-minlength-message="Please enter 4 or more characters." 
-						required="" data-required-message="Please enter a password" 
-						tabindex="2" title="Password" />
+						<input type="password" id="Password" name="Password" tabindex="2" title="Password" autocomplete="off" 
+						required="" data-required-message="Please enter password" 
+						data-minlength="4" data-minlength-message="Please enter 4 or more characters." />
 					</span>
 				</p>
-				<p class="submitForm">
-					<input type="submit" value="Login" tabindex="3" />
-				</p>
 			</fieldset>
+
+			<p>
+				<input type="submit" value="Login" tabindex="3" />
+			</p>
+
 		</form>
+	</div>
+
+		<div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">HTML5 Form Validation maintained by <a href="https://github.com/zfdesign">zfdesign</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 		<script src="../javascripts/ZFDValidateForm.js"></script>
