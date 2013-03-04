@@ -44,7 +44,7 @@ Enough talking lets get started...
 
 # Use cases
 
-Here are a few examples from the [Web site](http://zfdesign.github.com/HTML5-Form-Validation/) dedicated to this pugin. 
+Here are a few examples from this [Web site](http://zfdesign.github.com/HTML5-Form-Validation/) dedicated to this pugin. 
 
 * [Login form](http://zfdesign.github.com/HTML5-Form-Validation/examples/login.html)
 * [Registration form](http://zfdesign.github.com/HTML5-Form-Validation/examples/register.html)
@@ -62,7 +62,9 @@ It could is a simple as:
 * Set Input attributes (requires use of custom "data-" attributes)
 * Add a JavaScript line: 
 
-	$('formSelector').ZFValidateForm(); 
+<pre>
+    $('formSelector').ZFValidateForm(); 
+</pre>
 
 
 ## With 'options'
@@ -71,14 +73,24 @@ It is similar as above, but when needed the user can customise some of the defau
 A simple example is the [Card details example](http://zfdesign.github.com/HTML5-Form-Validation/examples/card-details.html). 
 
 
+<pre>
+    $('formSelector').ZFValidateForm({
+    	useCustomErrorContainer: true
+    }); 
+    
+    *Note: Error messages appear in a container specified for each 
+    	   input with 'data-error-container' attribute value as jQuery selector 
+</pre>
+
 ### Options reference: 
 
+<pre>
 * defaultErrorMessage: 		'* Incorrect input', 		// Default Error message if one not found
 * errorClassName: 			'error', 					// Error class attribute value - NOT jQuery selector 
 * errorWrapToggleClass: 	'showError', 				// Error class attribute value - NOT jQuery selector 
 * singleErrorContainer: 	'.formValidationError', 	// All Error messages in a Single container - jQuery Selector
 * useSingleErrorContainer: 	false, 						// Enable all Error messages in a single container
-* useCustomErrorContainer: 	false, 						// Enable all Error messages in the custom container specified in 'data-error-container'
+* useCustomErrorContainer: 	false, 						// Enable Error messages to appear in a container specified for each input with 'data-error-container' attribute value as jQuery selector 
 * errorInsertBeforeField:  	false,               		// Place Error message before validated field (does NOT apply when "errorClassName" element is Input sibling, NOR when useSingleErrorContainer = true)
 * hideErrorOnClearedInput: 	true, 						// Hide Error messages when Input is cleared by the user
 * disableBrowserValidation:	true, 						// Disable HTML5 Browser validation (should be set to 'true') 
@@ -99,7 +111,7 @@ A simple example is the [Card details example](http://zfdesign.github.com/HTML5-
 * onFormInvalid: 			function(){}, 				// on Submit and Form NOT Valid Callback
 
 // field attributes
-* minLength: 				1, 								// default minimum length to validate against if no minLengthAttribute value is provided
+* minLength: 				1, 							// default minimum length to validate against if no minLengthAttribute value is provided
 * maxLength: 				256, 						// default maximum length to validate against if no "maxlength" Attribute value is provided
 * minLengthAttribute: 		'data-minlength', 			// Attribute name for minimum required length 
 * minLengthMessage: 		'data-minlength-message',	// Error message on minimum length validation fail
@@ -112,6 +124,7 @@ A simple example is the [Card details example](http://zfdesign.github.com/HTML5-
 // Debug mode
 debugMode: false  										// Displays messages in the Console
 
+</pre>
 
 
 Remeber Client side validation does enfoce business logic, it is there to suggest, 
@@ -150,5 +163,5 @@ an aditional HTTP request is made where the business logic validation rules shou
 ## License
 
 MIT License  
-Copyright (c) ZFDesign  
+Copyright &copy; ZFDesign  
 
