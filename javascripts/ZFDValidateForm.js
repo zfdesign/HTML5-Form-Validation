@@ -51,7 +51,10 @@ jQuery (client side) HTML5 Form validation plug-in
             // IE Fix
             isIE: new RegExp('MSIE|Trident').test(navigator.userAgent), // Is this IE
             // Debug mode
-            debugMode:              false  						// Displays messages in the Console
+            debugMode:              false,  					// Displays messages in the Console
+            debugOutput:            function(eventType,elId,fieldValidity,errMsg,logType){         // DRY debug Logging
+                $.error('\n\tZFValidateForm DebugMode log:  \n\t\t Event: '+ eventType + ' validation \n\t\t Element: ' + elId + ' \n\t\t Field validity: ' + fieldValidity +' \n\t\t Error message: ' + errMsg);
+            }
           };
 
         var o = _VF.options = $.extend({}, defaults, args);
@@ -180,7 +183,7 @@ jQuery (client side) HTML5 Form validation plug-in
                 errMinMsg = $(el).attr(o.minLengthMessage), 
                 errorMessage = (errMinMsg !== undefined && errMinMsg.length > 0) ? errMinMsg : o.defaultErrorMessage; // !== undefined
                 
-                if(o.debugMode) { $.error('\n\tZFValidateForm DebugMode log:  \n\t\t Event: '+ o.minLengthAttribute + ' validation \n\t\t Element: ' + elId + ' \n\t\t Field validity: ' + isFieldValid +' \n\t\t minlength value: ' + minLength  + ' \n\t\t Error message: ' + errorMessage); }
+                if(o.debugMode) {o.debugOutput('Minimum Length value: ' + minLength, elId, isFieldValid, errorMessage); }
 
             
             // Modern Browsers
@@ -204,7 +207,7 @@ jQuery (client side) HTML5 Form validation plug-in
                 errMaxMsg = $(el).attr(o.maxLengthMessage), 
                 errorMessage = (errMaxMsg !== undefined && errMaxMsg.length > 0) ? errMaxMsg : o.defaultErrorMessage;
                 
-                if(o.debugMode) { $.error('\n\tZFValidateForm DebugMode log:  \n\t\t Event: maxlength validation \n\t\t Element: ' + elId + ' \n\t\t Field validity: ' + isFieldValid +' \n\t\t maxlength value: ' + maxLength  + ' \n\t\t Error message: ' + errorMessage); }
+                if(o.debugMode) {o.debugOutput('Maximum Length value: ' + maxLengthAttr, elId, isFieldValid, errorMessage); }
 
             // Modern Browsers
             if(el.willValidate && el.validity.rangeOverflow) {
@@ -230,7 +233,7 @@ jQuery (client side) HTML5 Form validation plug-in
                     isFieldValid = false;
                     showError(elId, $elParent, errorNode, errMsg);
 
-                    if(o.debugMode) { $.error('\n\tZFValidateForm DebugMode log:  \n\t\t Event: New Browser validation \n\t\t Element: ' + elId +' \n\t\t Field validity: ' +!el.validity.valid); }
+                    if(o.debugMode) {o.debugOutput('Pattern check (Native). \n\t\t Pattern: ' + pattern, elId, isFieldValid, errMsg); }
                 }
             } // Older browsers
             else {
@@ -246,7 +249,7 @@ jQuery (client side) HTML5 Form validation plug-in
                         showError(elId, $elParent, errorNode, errMsg);
                     }
 
-                if(o.debugMode) { $.error('\n\tZFValidateForm DebugMode log:  \n\t\t Event: Pattern validation (OLD) \n\t\t Pattern: ' + new RegExp(pattern).test(elValue) + '\n\t\t Element: ' + elId +' \n\t\t Field validity: ' + isFieldValid); }  
+                if(o.debugMode) { o.debugOutput('Pattern check (OLD). \n\t\t Pattern: ' + pattern, elId, isFieldValid, errMsg); }
                 }
 
             }
@@ -266,7 +269,7 @@ jQuery (client side) HTML5 Form validation plug-in
                     showError(elId, $elParent, errorNode, errMsg);
                 }
 
-                if(o.debugMode) { $.error('\n\tZFValidateForm DebugMode log:  \n\t\t Event: Field Match validation \n\t\t Validated Field value: ' + $el.val() + '\n\t\t Did not match: ' + $(matchAttribute).val()); }  
+                if(o.debugMode) { o.debugOutput('Match values. \n\t\t Validated value: ' + $el.val() + '\n\t\t To match: ' + $(matchAttribute).val(), getIdentity(el), isFieldValid, errMsg); }
 
 
         };
@@ -323,7 +326,7 @@ jQuery (client side) HTML5 Form validation plug-in
                 fnCallback(isFieldValid);
             }
 
-            if(o.debugMode) { $.error('\n\tZFValidateForm DebugMode log:  	\n\t\t Function: validateField \n\t\t Element: ' + elId + '\n\t\t Field validity: ' + isFieldValid); }
+            if(o.debugMode) { o.debugOutput('Method: \'validateField\'', elId, isFieldValid, $(errorNode).text()); }
 
             return isFieldValid;
 
@@ -355,8 +358,8 @@ jQuery (client side) HTML5 Form validation plug-in
                     o.onFieldNotValid(myEl);
                 }
 
-             // Debug Mode
-						if(o.debugMode) { $.error('\n\tZFValidateForm DebugMode log: \n\t\t Event: ' + eName + ': \n\t\t Element: ' + getIdentity(myEl) + " \n\t\t Field validity: " + isFieldValid); } 
+                 // Debug Mode
+                if(o.debugMode) { o.debugOutput(eName, getIdentity(myEl), isFieldValid, $('.' + o.errorClassName).text()); }
 
             });
         }
@@ -527,7 +530,7 @@ jQuery (client side) HTML5 Form validation plug-in
             }
 
 			// Debug Mode
-			if(o.debugMode) { $.error("Today: " + today + "\nExpiry Date: " + expDate); }
+			if(o.debugMode) { o.debugOutput('Expiry Date. \n\t\tToday: ' + today + '\nExpiry Date: ' + expDate, getIdentity(myEl), isFieldValid, errorExpired); }
         } //validateExpiryDate END
 
 
@@ -560,7 +563,7 @@ jQuery (client side) HTML5 Form validation plug-in
 				if(!isFormValid && $.isFunction(d.notValid)) { d.notValid(); }
 					
 				// Debug Mode
-				if(o.debugMode) { $.error('\n\tZFValidateForm DebugMode log: \n\t\t Event: onDemandValidate \n\t\t Form validity: ' + isFormValid); }
+				if(o.debugMode) {o.debugOutput('Method: \'onDemandValidate\' ', getIdentity($Form), isFormValid, 'Invalid Fields error messages'); }
 
 				return isFormValid;
 			};
