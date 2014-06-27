@@ -163,7 +163,7 @@ jQuery (client side) HTML5 Form validation plug-in
                 errorMessage = (requiredMsg !== undefined && requiredMsg.length > 0) ? requiredMsg : o.defaultErrorMessage;
 
             // Modern Browsers (faster)
-            if (el.willValidate && el.validity.valueMissing && !(isIE && el.nodeName === 'SELECT')) { // IE updates 'el.validity.valueMissing' after 'onchange' event has completed and fails here
+            if (el.willValidate && el.validity.valueMissing && !(o.isIE && el.nodeName === 'SELECT')) { // IE updates 'el.validity.valueMissing' after 'onchange' event has completed and fails here
                 isFieldValid = false;
                 showError(elId, $elParent, errorNode, errorMessage);
             } // Older browsers
