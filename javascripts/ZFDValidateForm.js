@@ -48,7 +48,8 @@ jQuery (client side) HTML5 Form validation plug-in
             patternMessage: 		'data-pattern-message',		// Error message on "pattern" validation fail
             matchAttribute: 		'data-match-field',			// Attribute name for field matching values - jQuery Selector
             matchMessage: 			'data-match-message',		// Error message on "field match" validation fail
-
+            // IE Fix
+            isIE: new RegExp('MSIE|Trident').test(navigator.userAgent), // Is this IE
             // Debug mode
             debugMode:              false  						// Displays messages in the Console
           };
@@ -159,7 +160,7 @@ jQuery (client side) HTML5 Form validation plug-in
                 errorMessage = (requiredMsg !== undefined && requiredMsg.length > 0) ? requiredMsg : o.defaultErrorMessage;
 
             // Modern Browsers (faster)
-            if (el.willValidate && el.validity.valueMissing) {
+            if (el.willValidate && el.validity.valueMissing && !(isIE && el.nodeName === 'SELECT')) { // IE updates 'el.validity.valueMissing' after 'onchange' event has completed and fails here
                 isFieldValid = false;
                 showError(elId, $elParent, errorNode, errorMessage);
             } // Older browsers
