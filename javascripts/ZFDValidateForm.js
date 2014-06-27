@@ -16,41 +16,41 @@ jQuery (client side) HTML5 Form validation plug-in
     $.fn.ZFValidateForm = function(args) {
 
         var defaults = {
-            defaultErrorMessage: 		'* Incorrect input', 	// Default Error message if one not found
-            errorClassName: 				'error', 							// Error class attribute value - NOT jQuery selector 
-            errorWrapToggleClass: 	'showError', 					// Error class attribute value - NOT jQuery selector 
-            singleErrorContainer: 	'.formValidationError',// All Error messages in a Single container - jQuery Selector
-            useSingleErrorContainer: false, 							// Enable all Error messages in a single container
-            useCustomErrorContainer: false, 							// Enable all Error messages in the custom container specified in 'data-error-container'
-            errorInsertBeforeField:  false,               // Place Error message before validated field (does NOT apply when "errorClassName" element is Input sibling, NOR when useSingleErrorContainer = true)
-            hideErrorOnClearedInput: true, 								// Hide Error messages when Input is cleared by the user
-            disableBrowserValidation:true, 								// Disable HTML5 Browser validation (should be set to 'true') 
+            defaultErrorMessage: 	'* Incorrect input', 	    // Default Error message if one not found
+            errorClassName: 		'error', 					// Error class attribute value - NOT jQuery selector
+            errorWrapToggleClass: 	'showError', 				// Error class attribute value - NOT jQuery selector
+            singleErrorContainer: 	'.formValidationError',     // All Error messages in a Single container - jQuery Selector
+            useSingleErrorContainer: false, 					// Enable all Error messages in a single container
+            useCustomErrorContainer: false, 					// Enable all Error messages in the custom container specified in 'data-error-container'
+            errorInsertBeforeField:  false,                     // Place Error message before validated field (does NOT apply when "errorClassName" element is Input sibling, NOR when useSingleErrorContainer = true)
+            hideErrorOnClearedInput: true, 						// Hide Error messages when Input is cleared by the user
+            disableBrowserValidation:true, 						// Disable HTML5 Browser validation (should be set to 'true')
             // events
-            validateOnKeyup: 			false, 									// Validate Field onKeyup event
-            validateOnBlur: 			false, 									// Validate Field onBlur event
-            validateOnChange: 		true, 									// Validate Field onChange event
-            validateOnLoad: 			false, 									// Validate Form on Document load and return "isFormValid"
-            validateInputType: 		false, 									// Validate Field Type (NOT IN USE reserved for future)
-            validateCustomRules:	true,										// Validates fields with attribute data-custom-validity='{"type": "expiryDate", "arguments": {"key": "value"}}'
-            onDemandValidate: 		false, 									// TRUE: will give access to: $.fn.ZFValidateForm.onDemandValidate() Method - validates the Form with callback options, returns "isFormValid"
+            validateOnKeyup: 		false, 						// Validate Field onKeyup event
+            validateOnBlur: 		false, 						// Validate Field onBlur event
+            validateOnChange: 		true, 						// Validate Field onChange event
+            validateOnLoad: 		false, 						// Validate Form on Document load and return "isFormValid"
+            validateInputType: 		false, 						// Validate Field Type (NOT IN USE reserved for future)
+            validateCustomRules:	true,						// Validates fields with attribute data-custom-validity='{"type": "expiryDate", "arguments": {"key": "value"}}'
+            onDemandValidate: 		false, 						// TRUE: will give access to: $.fn.ZFValidateForm.onDemandValidate() Method - validates the Form with callback options, returns "isFormValid"
             // callbacks
-            onFieldValid: 			function(){}, 						// onChange and onKeyup Field Valid Callback (runs onChange and onKeyup to avoid performance issues)
-						onFieldNotValid: 		function(){}, 						// onChange and onKeyup Field NOT Valid Callback (runs onChange and onKeyup to avoid performance issues)
-						onFormValid: 				function(){}, 						// on Submit and Form Valid Callback
-						onFormInvalid: 			function(){}, 						// on Submit and Form NOT Valid Callback
+            onFieldValid: 			function(){}, 				// onChange and onKeyup Field Valid Callback (runs onChange and onKeyup to avoid performance issues)
+            onFieldNotValid: 		function(){}, 				// onChange and onKeyup Field NOT Valid Callback (runs onChange and onKeyup to avoid performance issues)
+        onFormValid: 				function(){}, 				// on Submit and Form Valid Callback
+            onFormInvalid: 			function(){}, 				// on Submit and Form NOT Valid Callback
             // field attributes
-            minLength: 1, 																// default minimum length to validate against if no minLengthAttribute value is provided
-            maxLength: 256, 															// default maximum length to validate against if no "maxlength" Attribute value is provided
-            minLengthAttribute: 'data-minlength', 				// Attribute name for minimum required length 
-            minLengthMessage: 	'data-minlength-message',	// Error message on minimum length validation fail
-            maxLengthMessage: 	'data-maxlength-message',	// Error message on "maxlength" validation fail
+            minLength:              1, 							// default minimum length to validate against if no minLengthAttribute value is provided
+            maxLength:              256, 						// default maximum length to validate against if no "maxlength" Attribute value is provided
+            minLengthAttribute:     'data-minlength', 			// Attribute name for minimum required length
+            minLengthMessage: 	    'data-minlength-message',	// Error message on minimum length validation fail
+            maxLengthMessage: 	    'data-maxlength-message',	// Error message on "maxlength" validation fail
             requiredMessage: 		'data-required-message',	// Error message on "required" validation fail
             patternMessage: 		'data-pattern-message',		// Error message on "pattern" validation fail
-            matchAttribute: 		'data-match-field',				// Attribute name for field matching values - jQuery Selector
-            matchMessage: 			'data-match-message',			// Error message on "field match" validation fail
+            matchAttribute: 		'data-match-field',			// Attribute name for field matching values - jQuery Selector
+            matchMessage: 			'data-match-message',		// Error message on "field match" validation fail
 
             // Debug mode
-            debugMode: false  									// Displays messages in the Console
+            debugMode:              false  						// Displays messages in the Console
           };
 
         var o = _VF.options = $.extend({}, defaults, args);
