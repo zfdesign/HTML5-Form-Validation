@@ -233,7 +233,7 @@
                         isFieldValid = false;
                         showError(elId, $elParent, errorNode, errMsg);
 
-                        if(o.debugMode) {o.debugOutput('Pattern check (Native). \n\t\t Pattern: ' + pattern, elId, isFieldValid, errMsg); }
+                        if(o.debugMode) {o.debugOutput('Pattern check (Native). \n\t\t Pattern: ' + $(el).attr('pattern'), elId, isFieldValid, errMsg); }
                     }
                 } // Older browsers
                 else {
